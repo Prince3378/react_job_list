@@ -1,19 +1,20 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
+import { ApiProvider } from '@reduxjs/toolkit/dist/query/react';
+import ReactDOM from 'react-dom';
+import { HashRouter as Router } from 'react-router-dom';
+import { api } from './api/generalApi';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+import { LocProvider } from './context/ReactContext';
+import './index.css';
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+ReactDOM.render(
+  <ApiProvider api={api}>
+    <Router>
+      <LocProvider>
+        <App />
+      </LocProvider>
+    </Router>
+  </ApiProvider>,
+
+  document.getElementById('root'),
+);

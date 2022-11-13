@@ -1,4 +1,4 @@
-# React calendar ToDo
+# React Job List
 
 [DEMO LINK](https://prince3378.github.io/react_job_list/)
 

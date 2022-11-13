@@ -12,17 +12,20 @@ import classNames from 'classnames';
 import { MapFragment } from './MapFragment';
 import { LocContext } from '../context/ReactContext';
 import loc from './../images/location.svg';
+import useWindowDimensions from './useWindowDimensions';
 
 type Props = {
   selectedJob: Data | null;
 }
 
 export const DetailedPage: React.FC<Props> = ({ selectedJob }) => {
+  const { width } = useWindowDimensions();
+
   const getSalary = (salary: string | undefined) => {
     if (salary) {
-      const x = salary.split('-');
+      const splitedSalary = salary.split('-');
 
-      return `€ ${x.map(el => `${el.slice(0, 2)} 000`).join(' - ')}`;
+      return `€ ${splitedSalary.map(el => `${el.slice(0, 2)} 000`).join(' - ')}`;
     }
   };
 
@@ -45,13 +48,20 @@ export const DetailedPage: React.FC<Props> = ({ selectedJob }) => {
   }, [selectedJob?.location]);
 
   return (
-    <div className="container mx-auto pt-7 flex justify-between bg-white">
-      <div className="w-[60%]">
-        <div className="flex justify-between items-center border-b-2 mb-10">
-          <h1 className="font-bold text-3xl text-titleColor mb-2">
+    <div className="container mx-auto pt-7
+      flex justify-between bg-white
+      lg:flex-col"
+    >
+      <div className="w-[60%] lg:w-[100%]">
+        <div className="flex justify-between items-center mb-10 border-b-2
+          md:flex-col md:border-none md:items-start md:mb-8"
+        >
+          <h1 className="font-bold text-3xl text-titleColor mb-2
+            md:border-b-2 md:w-[100%] md:pb-3"
+          >
             Job Details
           </h1>
-          <span className="flex justify-between items-center">
+          <div className="flex justify-between items-center">
             <HandySvg
               src={logo}
               className="
@@ -75,14 +85,17 @@ export const DetailedPage: React.FC<Props> = ({ selectedJob }) => {
               />
               <p className="inline-block">Share</p>
             </a>
-          </span>
+          </div>
         </div>
-        <ApplyNow />
+        <div className='md:hidden'>
+          <ApplyNow />
+        </div>
         <div className="flex justify-between mb-2">
-          <h1 className="w-[60%] font-bold text-2xl text-titleColor">
+          <h1 className="w-[60%] font-bold text-2xl text-titleColor
+          md:w-[100%]">
             {selectedJob?.title}
           </h1>
-          <div>
+          <div className="md:hidden">
             <h2 className="font-bold text-xl text-titleColor">
               {getSalary(selectedJob?.salary)}
             </h2>
@@ -91,9 +104,22 @@ export const DetailedPage: React.FC<Props> = ({ selectedJob }) => {
             </p>
           </div>
         </div>
-        <p className="text-base text-desСolor mb-2">
-          {`Posted ${new Date(selectedJob !== null ? selectedJob.createdAt : '').toLocaleDateString()}`}
-        </p>
+        <div>
+
+          <div className="flex justify-between">
+            <p className="text-base text-desСolor mb-2">
+              {`Posted ${new Date(selectedJob !== null ? selectedJob.createdAt : '').toLocaleDateString()}`}
+            </p>
+            <div className="hidden md:flex md:flex-col md:items-end">
+              <p className="text-titleColor">
+                Brutto, per year
+              </p>
+              <h2 className="font-bold text-xl text-titleColor">
+                {getSalary(selectedJob?.salary)}
+              </h2>
+            </div>
+          </div>
+        </div>
 
         {getDescription(selectedJob?.description)?.map((el, i) => (
           <div
@@ -113,7 +139,10 @@ export const DetailedPage: React.FC<Props> = ({ selectedJob }) => {
           </div>
         ))}
 
-        <ApplyNow />
+        <div className="md:flex md:justify-center">
+          <ApplyNow />
+        </div>
+
         <div className="">
           <h1
             className="
@@ -150,7 +179,7 @@ export const DetailedPage: React.FC<Props> = ({ selectedJob }) => {
                  py-3 px-[70px] mr-2
                  font-bold text-base text-[#988B49]
                  bg-[#fdf8d9] border-2 border-[#FFCF00]
-                 rounded-lg"
+                 rounded-lg md:px-[30px]"
               >
                 {benefit}
               </div>
@@ -180,8 +209,8 @@ export const DetailedPage: React.FC<Props> = ({ selectedJob }) => {
           <NavLink to={'/'}>
             <div
               className="
-              w-[30%] mb-[90px]
-              py-4 px-6 items-center
+              w-[33%] mb-[90px]
+              py-4 px-3 items-center
               font-semibold text-xs text-[#55699E]
               bg-[#e1e6f4] border-2 border-[#b7c0da]
               hover:bg-[#55699E] hover:text-[#e1e6f4] transition-all
@@ -189,21 +218,30 @@ export const DetailedPage: React.FC<Props> = ({ selectedJob }) => {
             >
               <HandySvg
                 src={left}
-                className="fill-[#7D859C] inline-block mr-[19px]"
+                className="fill-[#7D859C] inline-block mr-[12px]"
                 width="15"
                 height="18"
               />
-                RETURN TO JOB BOARD
+              {width < 700 ? 'RETURN' : 'RETURN TO JOB BOARD'}
             </div>
           </NavLink>
         </div>
       </div>
 
+      <h1 className="
+        hidden
+        font-bold text-3xl text-titleColor
+        border-b-2 pb-[9px] mb-[15px]
+        lg:block"
+      >
+        Contacts
+      </h1>
       <div
         className="relative
         w-[30%] h-[400px]
-         bg-[#2A3047] rounded-lg
-         overflow-hidden"
+        bg-[#2A3047] rounded-lg
+        overflow-hidden
+        lg:mb-10 lg:w-[50%]"
       >
         <div
           className="h-[70%] w-[70%]
@@ -211,12 +249,16 @@ export const DetailedPage: React.FC<Props> = ({ selectedJob }) => {
           absolute bg-[#202336]"
         >
         </div>
-        <div className="h-[50%] py-8 px-[60px] relative text-mapTitle">
+        <div className="h-[50%] py-8 px-[60px]
+          relative text-mapTitle
+          hd:px-[30px]"
+        >
           <h1 className="font-bold text-xl pb-2">
             {selectedJob?.name}
           </h1>
-          <img src={loc} alt="location" className="inline"/>
-          <p className="inline-block pl-2 pb-2">
+          <img src={loc} alt="location" className="inline hd:h-4"/>
+          <p className="inline-block text-base
+          pl-2 pb-2 hd:font-light hd:text-sm">
             {selectedJob?.address}
           </p>
           <p>{selectedJob?.phone}</p>

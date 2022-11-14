@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/react_job_list/static/css/main.53c000d0.css",
-    "main.js": "/react_job_list/static/js/main.e6ab3867.js",
+    "main.css": "/react_job_list/static/css/main.cffa1f3c.css",
+    "main.js": "/react_job_list/static/js/main.6f6c005b.js",
     "static/media/star.svg": "/react_job_list/static/media/star.940f154bce8c4fba195c32ab44b144f2.svg",
     "index.html": "/react_job_list/index.html",
     "static/media/share.svg": "/react_job_list/static/media/share.7381a5999554764f3ce8249d49192539.svg",
@@ -9,11 +9,11 @@
     "static/media/saveIcon.svg": "/react_job_list/static/media/saveIcon.201248d5f7fc5d114b6cb4a1d3ea7b9d.svg",
     "static/media/left.svg": "/react_job_list/static/media/left.ef81df937ce3c7efd3de20386383c5c2.svg",
     "static/media/location.svg": "/react_job_list/static/media/location.1c093ca173a538132f1ce31ab6296061.svg",
-    "main.53c000d0.css.map": "/react_job_list/static/css/main.53c000d0.css.map",
-    "main.e6ab3867.js.map": "/react_job_list/static/js/main.e6ab3867.js.map"
+    "main.cffa1f3c.css.map": "/react_job_list/static/css/main.cffa1f3c.css.map",
+    "main.6f6c005b.js.map": "/react_job_list/static/js/main.6f6c005b.js.map"
   },
   "entrypoints": [
-    "static/css/main.53c000d0.css",
-    "static/js/main.e6ab3867.js"
+    "static/css/main.cffa1f3c.css",
+    "static/js/main.6f6c005b.js"
   ]
 }

@@ -2,7 +2,7 @@
 
 [DEMO LINK](https://prince3378.github.io/react_job_list/)
 
-In this project used: HTML, CSS, Tailwindcss, ClassNames, JavaScript, TypeScript, React, React-Router, ReactContext, Redux-Toolkit.
+In this project used: HTML, CSS, Tailwindcss, ClassNames, JavaScript, TypeScript, React, React-Router, ReactContext, Redux-Toolkit, React Hooks.
 
 # Getting Started with Create React App
 

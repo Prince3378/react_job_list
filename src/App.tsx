@@ -59,17 +59,22 @@ function App() {
                   setSelectedJob={setSelectedJob}
                 />
               )) }
-            <Pagination
+            {jobs.length > 0 && <Pagination
               currentPage={currentPage}
               setCurrentPage={setCurrentPage}
               amountPages={amountPages}
-            />
+            />}
           </div>
         } />
         <Route path="/:jobId" element={(
           <DetailedPage selectedJob={selectedJob} />
         )}/>
       </Routes>
+      {(jobs.length === 0 && !isLoading) && (
+        <h1 className="text-titleColor font-bold text-xl text-center">
+          Page not found
+        </h1>
+      )}
     </div>
   );
 }
